@@ -3,6 +3,7 @@ package com.example.android.sunshine.app;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,6 +99,12 @@ public class ForecastFragment extends Fragment {
         ListView lv = (ListView) rootView.findViewById(
                 R.id.listview_forecast);
         lv.setAdapter(mForecastAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return rootView;
     }
@@ -254,7 +263,7 @@ public class ForecastFragment extends Fragment {
 
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Error ", e);
-                // If the code didn't successfully get the weather data, there's no point in attemping
+                // If the code didn't successfully get the weather data, there's no point in attempting
                 // to parse it.
                 return null;
             } finally {
