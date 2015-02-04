@@ -34,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(LOG_TAG,"Activity created!");
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -89,5 +90,37 @@ public class MainActivity extends ActionBarActivity {
         } else {
             Log.d(LOG_TAG, "Couldn't call " + zipcode + ", no map apps installed!");
         }
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        Log.d(LOG_TAG,"Activity Destroyed!");
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(LOG_TAG,"Activity Started!");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(LOG_TAG,"Activity Stopped!");
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume(){
+        Log.d(LOG_TAG,"Activity Resumed!");
+        super.onResume();
+    }
+
+    @Override
+    protected  void onPause(){
+        Log.d(LOG_TAG,"Activity Paused!");
+        super.onPause();
     }
 }
